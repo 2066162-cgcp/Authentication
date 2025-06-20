@@ -1,12 +1,16 @@
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
 
 
 function Header() {
+    const {userData}=useContext(AppContext)
+    console.log(userData);
     
   return (
     <div className='d-flex flex-column align-items-center justify-content-center' style={{ width: '100%', height: '100vh' }}>
         <img src="https://img.freepik.com/free-vector/graident-ai-robot-vectorart_78370-4114.jpg?semt=ais_hybrid&w=740" alt="AI Robot" style={{ width: '150px', height: '150px' }} />
         <h2 className='d-flex gap-2'>
-            Hey Developer
+            Hey {userData? userData.name : 'Developer'}
             <span role="img" aria-label="wave">👋</span>
         </h2>
         <h1>
