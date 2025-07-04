@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import logo from '../assets/logo.png';
 
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +10,7 @@ function EmailVerify() {
 
   const inputRef=React.useRef([])
   const navigate=useNavigate()
-  const{backenUrl, getUserData}=useContext(AppContext)
+  const{backendUrl, getUserData, isLoggedin, userData}=useContext(AppContext)
 
   const handleInput=(e,index)=>{
     // This creates a ref that stores references to each of the 6 input elements. inputRef.current will be an array like:
@@ -43,7 +43,7 @@ function EmailVerify() {
       const otpArray=inputRef.current.map(e=>e.value)
       const otp=otpArray.join('')
 
-      const {data}=await VerifyEmailOtpApi(backenUrl,{otp})
+      const {data}=await VerifyEmailOtpApi(backendUrl,{otp})
 
       if(data.success){
         toast.success(data.message)
@@ -57,6 +57,9 @@ function EmailVerify() {
     }
   }
 
+  useEffect(()=>{
+    isLoggedin && userData && userData.isAccountVerified && navigate('/')
+  },[isLoggedin,userData])
   return (
     <div className="container-fluid position-relative w-100 align-items-center justify-content-center d-flex" style={{ height: '100vh',background: 'linear-gradient(to right, hsla(229, 32.50%, 69.80%, 0.50),hsl(270, 27.30%, 82.70%))',}}>
         <img src={logo} alt="Logo" className="position-absolute img-fluid rounded cursor-pointer top-0 start-0 ms-3 mt-3" style={{ maxWidth: '150px', zIndex: 10 }} onClick={()=>navigate('/')}/>

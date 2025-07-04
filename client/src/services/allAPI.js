@@ -27,3 +27,11 @@ export const sendVerificationOtpApi=async(backendUrl)=>{
 export const VerifyEmailOtpApi=async(backendUrl,reqBody)=>{
     return await commonAPI('POST',`${backendUrl}/api/auth/verify-email-otp`,reqBody,"")//reqBody=otp
 }
+
+export const sendResetPwdOtpApi=async(backendUrl,reqBody)=>{
+    return await commonAPI('POST',`${backendUrl}/api/auth/send-reset-otp`,reqBody,"")
+}
+
+export const resetUserPasswordApi=async(backendUrl,reqBody)=>{
+    return await commonAPI('POST',`${backendUrl}/api/auth/reset-password`,reqBody,"")
+}

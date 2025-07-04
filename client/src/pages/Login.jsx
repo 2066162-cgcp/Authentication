@@ -94,7 +94,7 @@ function Login() {
               }}
             />
 
-            <p className='cursor-pointer' onClick={()=>navigate('/reset-password')} style={{textDecoration:'none',color:'indigo'}}>forgot password?</p>
+            {state != 'sign up' && <p className='cursor-pointer' onClick={()=>navigate('/reset-password')} style={{textDecoration:'none',color:'indigo'}}>forgot password?</p>}
             <button type="submit" className='btn rounded-5 mt-3 text-light' style={{background: 'linear-gradient(to right, #0f1739,rgb(39, 9, 70))'}}>
               {state === 'sign up' ? 'Sign up' : 'Login'}
             </button>
